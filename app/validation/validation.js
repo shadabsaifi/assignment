@@ -11,7 +11,8 @@ module.exports = {
     },
     read:{
         params:{
-            glossaryId:Joi.string().required()
+            glossaryId:Joi.string().required(),
+            _id:Joi.string().optional()
         }
     },
     create:{
@@ -22,16 +23,21 @@ module.exports = {
     },
     update:{
         params:{
-            glossaryId:Joi.string().required()
+            glossaryId:Joi.string().required(),
+            _id:Joi.string().optional()
         },
         body:{
             term:Joi.string().required(),
-            definition:Joi.string().required()
+            definition:Joi.string().required(),
+            createdAt:Joi.string().optional(),
+            updatedAt:Joi.string().optional(),
+            __v:Joi.number().optional(),
         }
     },
     remove:{
         params:{
-            glossaryId:Joi.string().required()
+            glossaryId:Joi.string().required(),
+            _id:Joi.string().optional()
         }
     }
 };

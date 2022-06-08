@@ -21,7 +21,8 @@ const list = (req, res) => {
     };
     var options = {
             page: parseInt(page, 10) || 1,
-            limit: parseInt(limit, 10) || 10
+            limit: parseInt(limit, 10) || 10,
+            select:'term definition _id'
     };
     Tutorial.paginate(query, options).then(result => {
         return common.response(res, code.EVERYTHING_IS_OK, message.EVERYTHING_IS_OK, result);
