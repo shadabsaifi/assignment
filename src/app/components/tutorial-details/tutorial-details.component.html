@@ -1,0 +1,40 @@
+<div *ngIf="currentTutorial" class="edit-form">
+    <h4>Tutorial</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentTutorial.term"
+          name="title"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Definition</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentTutorial.definition"
+          name="description"
+        />
+      </div>
+    </form>
+    <button type="submit" class="badge badge-success" (click)="backTutorial()">
+        Back
+      </button>
+      <button type="submit" class="badge badge-success" (click)="updateTutorial()">
+        Update
+      </button>
+    <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+      Delete
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  <div *ngIf="!currentTutorial">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+  

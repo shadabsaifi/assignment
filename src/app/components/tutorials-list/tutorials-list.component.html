@@ -1,0 +1,56 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Tutorials List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let tutorial of tutorials | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems:totalItems }; let i = index; "
+          [class.active]="i == currentIndex"
+          (click)="setActiveTutorial(tutorial, i)"
+        >
+          {{ tutorial.term }}<i class="fa fa-trash"></i>
+        </li>
+      </ul>
+      <div *ngIf="tutorials.length != 0">
+          <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentTutorial">
+        <h4>Tutorial</h4>
+        <div>
+          <label><strong>Term:</strong></label> {{ currentTutorial.term }}
+        </div>
+        <div>
+          <label><strong>Definition:</strong></label>
+          {{ currentTutorial.definition }}
+        </div>
+        <a href="/assignment/{{ currentTutorial._id }}">
+            <i class="icon-edit">Edit</i>
+        </a>
+      </div>
+      <div *ngIf="!currentTutorial">
+        <br />
+        <p>Please click on a Tutorial...</p>
+      </div>
+    </div>
+  </div>
