@@ -12,13 +12,14 @@ app.use(bodyParser.json({limit:"100mb"}));
 app.use(cors());
 
 app.use('/', express.static(path.resolve('./dist')));
+app.use('/api', tutorialRoute);
 
-app.get('/', (req, res)=>{
+
+app.get('/*', (req, res)=>{
 
     return res.sendFile(path.resolve('./dist/index.html'));
 })
 
-app.use('/api', tutorialRoute);
 
 app.listen(config.PORT, ()=>{
     console.log("server listening on port ",config.PORT)

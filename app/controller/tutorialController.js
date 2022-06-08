@@ -6,7 +6,7 @@ var message = require('../common/responseMessage');
 var Tutorial = require('../models/tutorial_model');
 
 const list = (req, res) => {
-
+    
     var page = req.query.page || 1,
         limit = req.query.limit || 10, query = {};
     if(req.joi.term) query = {
@@ -21,8 +21,7 @@ const list = (req, res) => {
     };
     var options = {
             page: parseInt(page, 10) || 1,
-            limit: parseInt(limit, 10) || 10,
-            select:'term definition _id'
+            limit: parseInt(limit, 10) || 10
     };
     Tutorial.paginate(query, options).then(result => {
         return common.response(res, code.EVERYTHING_IS_OK, message.EVERYTHING_IS_OK, result);
